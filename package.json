@@ -1,0 +1,23 @@
+{
+  "name": "employee-management-tracker-tool",
+  "version": "1.0.0",
+  "description": "Employee managment tracker tool",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yutthana00/Employee-Management-Tracker-Tool.git"
+  },
+  "author": "Yutthana00",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yutthana00/Employee-Management-Tracker-Tool/issues"
+  },
+  "homepage": "https://github.com/Yutthana00/Employee-Management-Tracker-Tool#readme",
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
+}
