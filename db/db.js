@@ -34,8 +34,21 @@ class db {
                 }
             }
         );
-    
-    
+    }
+    // created new role using the value from inquirer.
+    addNewRole(roleInfo) {
+        return this.connection.query(
+            "INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)",
+            roleInfo,
+            (err, result) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(`Added new role ${roleInfo[0]}`);
+                    menubar();
+                }
+            }
+        );
     }
 
 
