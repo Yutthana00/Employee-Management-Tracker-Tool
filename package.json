@@ -4,7 +4,7 @@
   "description": "Employee managment tracker tool",
   "main": "server.js",
   "scripts": {
-    "test": "jest",
+    "test": "npm test",
     "start": "node server.js"
   },
   "repository": {
