@@ -1,9 +1,9 @@
-const inquirer = require ("inquirer");
-const db = require ("./db/db.js");
+const inquirer = require("inquirer");
+const db = require("./db/db");
 
 const init = () => {
     console.log("Greetings! Welcome to the Employee Managemant Tracker Tool!");
-    menubar();
+    menu();
 };
 
 menu = () => {

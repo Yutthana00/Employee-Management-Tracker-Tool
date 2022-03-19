@@ -1,7 +1,7 @@
-DROP DATA IF EXISTS management;
-CREATE DATABASE management; 
+DROP DATA IF EXISTS employees;
+CREATE DATABASE employees; 
 
-USE management;
+USE employees;
 
 CREATE TABLE deparment (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
