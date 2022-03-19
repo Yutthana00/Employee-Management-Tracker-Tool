@@ -166,28 +166,56 @@ async function updateEmployee() {
     let employeeArr = await createEmployeeList();
     // Ask the user which employee to update from the list
     inquirer
-      .prompt([
-        {
-          type: "list",
-          message: "Which employee would you like to update?",
-          name: "employee",
-          choices: employeeArr
-        },
-        {
-          type: "input",
-          message: "What is their new role id?",
-          name: "role"
-        }
-      ])
-      //Take the answer and split it into [first, last] so i can use the value to compare against db for update
-      .then((answer) => {
-        let empName = answer.employee.split(" ");
-        let first_name = empName[0];
-        let last_name = empName[1];
-        let updateInfo = [answer.role, first_name, last_name];
-        writeUpdate(updateInfo);
-      });
+        .prompt([
+            {
+                type: "list",
+                message: "Which employee would you like to update?",
+                name: "employee",
+                choices: employeeArr
+            },
+            {
+                type: "input",
+                message: "What is their new role id?",
+                name: "role"
+            }
+        ])
+        //Take the answer and split it into [first, last] so i can use the value to compare against db for update
+        .then((answer) => {
+            let empName = answer.employee.split(" ");
+            let first_name = empName[0];
+            let last_name = empName[1];
+            let updateInfo = [answer.role, first_name, last_name];
+            writeUpdate(updateInfo);
+        });
   }
 
+// call the db's function to write the updated info for the employee
+async function writeUpdate(updateInfo) {
+    await db.updateRole(updateInfo);
+}
+// call the db's function to delete the employee
+async function deleteEmp(name) {
+    let employeeArr = await createEmployeeList();
+    // ask the user which employee to update from the list
+    inquirer
+        .prompt([
+            {
+            type: "list",
+            message: "Which employee would you like to delete?",
+            name: "employee",
+            choices: employeeArr
+            }
+        ])
+        //take the answer and split it into [first, last] so i can use the value to compare against db for update
+        .then((answer) => {
+            let empName = answer.employee.split(" ");
+            let first_name = empName[0];
+            let last_name = empName[1];
+            let deletedEmp = [first_name, last_name];
+            db.deleteEmployee(deletedEmp);
+        });
+    }
 
+
+    
 }
