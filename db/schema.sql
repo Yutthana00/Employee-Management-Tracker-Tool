@@ -1,9 +1,9 @@
-DROP DATABASE IF EXISTS employees;
-CREATE DATABASE employees; 
+DROP DATABASE IF EXISTS management;
+CREATE DATABASE management; 
 
-USE employees;
+USE management;
 
-CREATE TABLE deparment (
+CREATE TABLE department (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL
 )
@@ -13,8 +13,8 @@ CREATE TABLE role (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(30) NOT NULL,
     salary FLOAT,
-    deparment_id INT,
-    FOREIGN KEY (deparment_id)
+    department_id INT,
+    FOREIGN KEY (department_id)
     REFERENCES department(id)
 );
 
