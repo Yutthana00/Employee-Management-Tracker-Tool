@@ -161,5 +161,33 @@ async function addEmployee(employeeInfo) {
     await db.addNewEmployee(employeeInfo);
 }
 
+// Call the db function to add update employee info
+async function updateEmployee() {
+    let employeeArr = await createEmployeeList();
+    // Ask the user which employee to update from the list
+    inquirer
+      .prompt([
+        {
+          type: "list",
+          message: "Which employee would you like to update?",
+          name: "employee",
+          choices: employeeArr
+        },
+        {
+          type: "input",
+          message: "What is their new role id?",
+          name: "role"
+        }
+      ])
+      //Take the answer and split it into [first, last] so i can use the value to compare against db for update
+      .then((answer) => {
+        let empName = answer.employee.split(" ");
+        let first_name = empName[0];
+        let last_name = empName[1];
+        let updateInfo = [answer.role, first_name, last_name];
+        writeUpdate(updateInfo);
+      });
+  }
+
 
 }
