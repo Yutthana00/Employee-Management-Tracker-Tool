@@ -9,7 +9,7 @@ const init = () => {
 menu = () => {
     console.log("\n");
 
-    // Inquirer Questions:
+// Inquirer Questions:
     inquirer
         .prompt(menuQs)
         .then((answers) => {
@@ -164,7 +164,7 @@ async function addEmployee(employeeInfo) {
 // Call the db function to add update employee info
 async function updateEmployee() {
     let employeeArr = await createEmployeeList();
-    // Ask the user which employee to update from the list
+// Ask the user which employee to update from the list
     inquirer
         .prompt([
             {
@@ -179,7 +179,7 @@ async function updateEmployee() {
                 name: "role"
             }
         ])
-    //Take the answer and split it into [first, last] so i can use the value to compare against db for update
+//Take the answer and split it into [first, last] so i can use the value to compare against db for update
         .then((answer) => {
             let empName = answer.employee.split(" ");
             let first_name = empName[0];
@@ -253,5 +253,40 @@ async function deleteRole() {
         });
     }
   
-
+async function createEmployeeList() {
+// Create an array of all employees to create an options list for inquirer
+    let employeeArr = [];
+// Call the db function to get the employee names and concat {first last, first last, etc}
+    let employees = await db.employeeNames();
+// Converting object to array by looping over the object and pushing each name to the array,
+    Object.keys(employees).forEach(function (key) {
+        let row = employees[key];
+        employeeArr.push(row.employee_name);
+    });
+    return employeeArr;
+}
+      
+async function createDeptList() {
+// Create an array of all employees to create an options list for inquirer
+    let deptArr = [];
+// Call the db function to get the employee names and concat {first last, first last, etc}
+    let depts = await db.departmentNames();
+// Converting object to array by looping over the object and pushing each name to the array,
+    Object.keys(depts).forEach(function (key) {
+        let row = depts[key];
+        deptArr.push(row.departments);
+    });
+    return deptArr;
+    }
+async function createRoleList() {
+// Create an array of all employees to create an options list for inquirer
+    let roleArr = [];
+// Call the db function to get the employee names and concat {first last, first last, etc}
+    let roles = await db.roleNames();
+// Converting object to array by looping over the object and pushing each name to the array,
+    Object.keys(roles).forEach(function (key) {
+        let row = roles[key];
+        roleArr.push(row.roles);
+    });
+    return roleArr;
 }
