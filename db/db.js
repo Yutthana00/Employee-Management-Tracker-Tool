@@ -123,4 +123,37 @@ class DB {
             }
         );
     }
+
+    // Delete a department using the value from inquirer
+    deleteDepartment(dept) {
+        return this.connection.query(
+            "DELETE FROM department WHERE name = ?;",
+            dept,
+            (err, result) => {
+                if (err) throw err;
+                else {
+                    console.log(`Deleted ${dept} department`);
+                    menu();
+                }
+            }
+        );
+    }
+
+
+    // Delete a department using the value from inquirer
+    deleteRoleDb(role) {
+        return this.connection.query(
+            "DELETE FROM role WHERE title = ?;",
+            role,
+            (err, result) => {
+                if (err) throw err;
+                else {
+                    console.log(`Deleted ${role} role`);
+                    menu();
+                }
+            }
+        );
+    }
 }
+
+module.exports = new DB(connection);
