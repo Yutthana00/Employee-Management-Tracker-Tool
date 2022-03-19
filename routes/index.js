@@ -125,4 +125,41 @@ const menuQs = [
     }
 ];
 
+// starts the program
+init();
+// Call the db function to return all employee related data
+async function viewEmployees() {
+    let employees = await db.findAllEmployees();
+    console.log("\n");
+    console.table(employees);
+    menu();
+}
+// Call the db function to return all department data
+async function viewDepartments() {
+    let departments = await db.findAllDepartments();
+    console.log("\n");
+    console.table(departments);
+    menu();
+}
+// Call the db function to return all role related data
+    async function viewRoles() {
+    let roles = await db.findAllRoles();
+    console.log("\n");
+    console.table(roles);
+    menu();
+}
+// Call the db function to add new department, passing in the data from the user
+async function addDepartment(newDept) {
+    await db.addNewDepartment(newDept);
+}
+// Call the db function to add new role, passing in the data from the user
+async function addRole(newRole, salary, deptId) {
+    await db.addNewRole(newRole, salary, deptId);
+}
+// Call the db function to add new employee, passing in the data from the user
+async function addEmployee(employeeInfo) {
+    await db.addNewEmployee(employeeInfo);
+}
+
+
 }
