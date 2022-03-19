@@ -104,4 +104,23 @@ class DB {
     }
 
 
-  
+  // Help function which returns a list of the employee first and last names
+  roleNames() {
+    return this.connection.query("SELECT role.title AS roles FROM role;");
+  }
+
+    // Delete an employee using the value from inquirer
+    deleteEmployee(name) {
+        return this.connection.query(
+            "DELETE FROM employee WHERE first_name = ? AND last_name = ?;",
+            name,
+            (err, result) => {
+                if (err) throw err;
+                else {
+                    console.log(`Deleted ${name[0]} ${name[1]}`);
+                    menu();
+                }
+            }
+        );
+    }
+}
