@@ -103,5 +103,26 @@ menu = () => {
             });
         };
 
+// Menu prompt questions for inquirer
+const menuQs = [
+    {
+    type: "list",
+    name: "menu",
+    message: "What would you like to do next?",
+    choices: [
+        "View All Departments",
+        "View All Roles",
+        "View All Employees",
+        "Add a Department",
+        "Add a Role",
+        "Add an Employee",
+        "Update Employee Role",
+        "Delete an Employee",
+        "Delete a Department",
+        "Delete a Role",
+        "Exit"
+    ]
+    }
+];
 
 }
