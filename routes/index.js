@@ -179,7 +179,7 @@ async function updateEmployee() {
                 name: "role"
             }
         ])
-        //Take the answer and split it into [first, last] so i can use the value to compare against db for update
+    //Take the answer and split it into [first, last] so i can use the value to compare against db for update
         .then((answer) => {
             let empName = answer.employee.split(" ");
             let first_name = empName[0];
@@ -189,14 +189,14 @@ async function updateEmployee() {
         });
   }
 
-// call the db's function to write the updated info for the employee
+// Call the db's function to write the updated info for the employee
 async function writeUpdate(updateInfo) {
     await db.updateRole(updateInfo);
 }
-// call the db's function to delete the employee
+// Call the db's function to delete the employee
 async function deleteEmp(name) {
     let employeeArr = await createEmployeeList();
-    // ask the user which employee to update from the list
+// Ask the user which employee to update from the list
     inquirer
         .prompt([
             {
@@ -206,7 +206,7 @@ async function deleteEmp(name) {
             choices: employeeArr
             }
         ])
-        //take the answer and split it into [first, last] so i can use the value to compare against db for update
+//Take the answer and split it into [first, last] so i can use the value to compare against db for update
         .then((answer) => {
             let empName = answer.employee.split(" ");
             let first_name = empName[0];
@@ -216,6 +216,42 @@ async function deleteEmp(name) {
         });
     }
 
+// Call the db function to delete the dept
+async function deleteDept() {
+    let departments = await createDeptList();
+// Ask the user which dept to delete from the list
+    inquirer
+        .prompt([
+            {
+            type: "list",
+            message: "Which department would you like to delete?",
+            name: "dept",
+            choices: departments
+            }
+        ])
+//Take the answer and split it into [first, last] so i can use the value to compare against db for update
+        .then((answer) => {
+            db.deleteDepartment(answer.dept);
+        });
+    }
+// Call the db function to delete the role
+async function deleteRole() {
+    let roles = await createRoleList();
+// ask the user which dept to delete from the list
+    inquirer
+        .prompt([
+            {
+            type: "list",
+            message: "Which role would you like to delete?",
+            name: "role",
+            choices: roles
+            }
+        ])
+//Take the answer and split it into [first, last] so i can use the value to compare against db for update
+        .then((answer) => {
+            db.deleteRoleDb(answer.role);
+        });
+    }
+  
 
-    
 }
